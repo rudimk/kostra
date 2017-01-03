@@ -28,6 +28,7 @@ class ProductionServer(Model):
     production_server_ip = Column(String(30), nullable=False)
     key_id = Column(Integer, ForeignKey('key.key_id'))
     key = relationship('Key')
+    production_server_user = Column(String(30))
 
     def __repr__(self):
         return self.production_server_name
@@ -40,6 +41,7 @@ class MySQLServer(Model):
     mysql_server_ip = Column(String(30), nullable=False)
     key_id = Column(Integer, ForeignKey('key.key_id'))
     key = relationship('Key')
+    mysql_server_user = Column(String(30))
 
     def __repr__(self):
         return self.mysql_server_name
@@ -52,6 +54,7 @@ class RethinkDBServer(Model):
     rethinkdb_server_ip = Column(String(30), nullable=False)
     key_id = Column(Integer, ForeignKey('key.key_id'))
     key = relationship('Key')
+    rethinkdb_server_user = Column(String(30))
 
     def __repr__(self):
         return self.rethinkdb_server_name

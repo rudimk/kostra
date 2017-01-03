@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+# Kostra's config file.
+Kostra/config.py
+
 # Distribution / packaging
 .Python
 env/

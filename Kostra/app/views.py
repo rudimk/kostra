@@ -32,6 +32,12 @@ class KeyModelView(ModelView):
     list_columns = ['key_name', 'key_path']
     label_columns = {'key_name': 'Name', 'key_path': 'Key Path'}
 
+class ProductionServerModelView(ModelView):
+    datamodel = SQLAInterface(ProductionServer)
+    list_columns = ['production_server_name', 'production_server_ip', 'key']
+    label_columns = {'production_server_name': 'Server Name', 'production_server_ip': 'Host', 'key': 'SSH Key'}
+
 appbuilder.add_view(KeyModelView, "List Keys",icon = "fa-key",category = "Keys", category_icon='fa-key')
+appbuilder.add_view(ProductionServerModelView, "Production Servers", icon="fa-cog", category="Servers", category_icon="fa-server")
 
 

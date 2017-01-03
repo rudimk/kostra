@@ -30,3 +30,14 @@ class ProductionServer(Model):
 
     def __repr__(self):
         return self.production_server_name
+
+# This model stores details about MySQL servers.
+class MySQLServer(Model):
+    mysql_server_id = Column(Integer, primary_key=True)
+    mysql_server_name = Column(String(50), nullable=False)
+    mysql_server_ip = Column(String(30), nullable=False)
+    key_id = Column(Integer, ForeignKey('key.key_id'))
+    key = relationship('Key')
+
+    def __repr__(self):
+        return self.mysql_server_name

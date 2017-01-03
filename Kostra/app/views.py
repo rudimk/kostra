@@ -1,7 +1,8 @@
 from flask import render_template
-from flask.ext.appbuilder.models.sqla.interface import SQLAInterface
-from flask.ext.appbuilder import ModelView
+from flask_appbuilder.models.sqla.interface import SQLAInterface
+from flask_appbuilder import ModelView
 from app import appbuilder, db
+from models import *
 
 """
     Create your Views::
@@ -25,5 +26,12 @@ def page_not_found(e):
     return render_template('404.html', base_template=appbuilder.base_template, appbuilder=appbuilder), 404
 
 db.create_all()
+
+class KeyModelView(ModelView):
+    datamodel = SQLAInterface(Key)
+    list_columns = ['key_name', 'key_path']
+    label_columns = {'key_name': 'Name', 'key_path': 'Key Path'}
+
+appbuilder.add_view(KeyModelView, "List Keys",icon = "fa-key",category = "Keys", category_icon='fa-key')
 
 

@@ -43,3 +43,15 @@ class MySQLServer(Model):
 
     def __repr__(self):
         return self.mysql_server_name
+
+
+# This model will store details about RethinkDB servers.
+class RethinkDBServer(Model):
+    rethinkdb_server_id = Column(Integer, primary_key=True)
+    rethinkdb_server_name = Column(String(50), nullable=False)
+    rethinkdb_server_ip = Column(String(30), nullable=False)
+    key_id = Column(Integer, ForeignKey('key.key_id'))
+    key = relationship('Key')
+
+    def __repr__(self):
+        return self.rethinkdb_server_name

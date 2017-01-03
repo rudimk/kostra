@@ -41,7 +41,7 @@ class ProductionServerModelView(ModelView):
     @action('update_packages', 'Update Ubuntu package repositories', 'Would you like to update package repos for this server?', 'fa-refresh')
     def update_packages(self, item):
         env = {}
-        hosts = """{}@{}""".format('dartboard-admin', item.production_server_ip)
+        hosts = """{}@{}""".format(item.production_server_user, item.production_server_ip)
         env['key_filename'] = item.key.key_path
         fabfile.execute_update_packages(env=env, hosts=hosts)
         return redirect(self.get_redirect())

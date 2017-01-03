@@ -11,6 +11,7 @@ AuditMixin will add automatic timestamp of created and modified by who
 
 """
 
+# This model stores SSH key details - their names and full paths.
 class Key(Model):
     key_id = Column(Integer, primary_key=True)
     key_name = Column(String(100), nullable=False)
@@ -18,3 +19,14 @@ class Key(Model):
 
     def __repr__(self):
         return self.key_name
+
+# This model stores details about a particular kind of server - in this case, a production server running various apps.
+class ProductionServer(Model):
+    production_server_id = Column(Integer, primary_key=True)
+    production_server_name = Column(String(50), nullable=False)
+    production_server_ip = Column(String(30), nullable=False)
+    key_id = Column(Integer, ForeignKey('key.key_id'))
+    key = relationship('Key')
+
+    def __repr__(self):
+        return self.production_server_name

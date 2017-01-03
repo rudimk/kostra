@@ -20,6 +20,7 @@ class Key(Model):
     def __repr__(self):
         return self.key_name
 
+
 # This model stores details about a particular kind of server - in this case, a production server running various apps.
 class ProductionServer(Model):
     production_server_id = Column(Integer, primary_key=True)
@@ -30,6 +31,7 @@ class ProductionServer(Model):
 
     def __repr__(self):
         return self.production_server_name
+
 
 # This model stores details about MySQL servers.
 class MySQLServer(Model):
